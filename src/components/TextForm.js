@@ -6,7 +6,6 @@ export default function TextForm(props) {
   }
 
   const handleUpClick = () =>{
-    //console.log("Clicked on uppercasebutton" +text);
       let newText = text.toUpperCase();
       setText(newText);
       props.showAlert("converted to uppercase!","success");
@@ -38,10 +37,8 @@ export default function TextForm(props) {
   }
 
   const handleCopyClick = () =>{
-    var text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    document.getSelection().removeAllRanges(); //this line for don't display the text as selected
+    navigator.clipboard.writeText(text);
+ //   document.getSelection().removeAllRanges(); //this line for don't display the text as selected
     props.showAlert("Copied to clipboard!","success");
   }
 
@@ -72,7 +69,7 @@ export default function TextForm(props) {
         <button type="button" disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleRemoveHtmlTagsClick}>Remove Tags</button>
     </div>
     <div className="container my-3" style={{color:props.mode==='dark'?'white':'rgb(4 34 64)'}}>
-      <h3>Your text summary is:</h3>
+      <h3>Your text summary:</h3>
       <p>{wordCount(text)} words {text.length} characters</p>
       <p>{0.008 * wordCount(text)} Minutes read</p>
       <h4>Preview:</h4>
